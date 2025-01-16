@@ -1,0 +1,9 @@
+.Button{
+    color: rgb(16, 116, 173);
+    background-Color: rgba(0, 195, 255, 0.1);
+    transition: 0.3s;
+}
+.Button:hover{
+    font-size: 20px;
+    text-shadow: 0 0 10px rgb(6, 168, 160);
+}
