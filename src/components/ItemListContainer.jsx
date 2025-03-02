@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getCategory, getProducts } from '../../asyncMock';
 import ProductCard from "./ProductCard";
 import { useParams } from "react-router-dom";
+import { getProducts, filterProductsByCategory } from './firebase.js';
 
 const divProducts = {
     display: 'flex',
@@ -21,11 +21,11 @@ export default function itemListContainer({text}){
 
 
     useEffect(() =>{
-    if(!catId){
+        if(!catId){
             getProducts().then((response) => setProducts(response));
-    }else{
-        getCategory(catId).then((response) => setProducts(response));
-    }
+        } else {
+            filterProductsByCategory(catId).then((response) => setProducts(response));
+        }
     },[catId]);
 
     return(

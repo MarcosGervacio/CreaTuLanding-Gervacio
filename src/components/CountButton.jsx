@@ -1,12 +1,16 @@
 import { useState } from "react"
 
 export default function CountButton({onConfirm}){
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(1);
     const max = 10;
-
+    const min = 1;
     const handleChange = (e) => {
         const inputValue = parseInt(e.target.value);
-        setValue(inputValue > max ? max : inputValue);
+        if(e.target.value === ''){
+            setValue(min) ;
+        }else{
+            setValue(inputValue > max ? max : inputValue);
+        };
     }
 
     const handleClick = () =>{
@@ -19,7 +23,7 @@ export default function CountButton({onConfirm}){
             <input
                 type="number"
                 max={10}
-                min={0}
+                min={1}
                 value={value}
                 onChange={handleChange}
             />

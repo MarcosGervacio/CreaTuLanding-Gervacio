@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import carrito from '../assets/carrito.png';
+import { CartContext } from '../context/CartContext';
 
 const styleDiv = {
     border: '3px solid black',
@@ -13,12 +15,14 @@ const styleCont = {
 }
 
 export default function CartWidjet(){
+    const [cart, setCart, addItem] = useContext(CartContext);
+
     return(
         <>
-        <div style={styleDiv}>
+        <div>{cart.length === 0 ? '' : <div style={styleDiv}>
             <img src={carrito} alt="Imagen del carrito" width="60" />
-            <span style={styleCont}>0</span>
-        </div>
+            <span style={styleCont}>{cart.length}</span>
+        </div>}</div>
         </>
     );
 }

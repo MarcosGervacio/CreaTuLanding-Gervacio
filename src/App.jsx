@@ -4,6 +4,8 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import ItemListContainer from './components/ItemListContainer'
 import ProductDetail from './components/ProductDetail'
 import ErrorComponent from './components/ErrorComponent'
+import CartComponent from './components/CartComponent'
+import CheckoutComponent from './components/CheckoutComponent'
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route exact path='/' element={<ItemListContainer text="Bienvenidos a GamerShop" />}/>
           <Route exact path='/category/:catId' element={<ItemListContainer text="Bienvenidos a GamerShop" />}/>
           <Route exact path='/product/:id' element={<ProductDetail />}/>
+          <Route exact path='/cart' element={<CartComponent />}/>
+          <Route exact path='/checkout' element={<CheckoutComponent />}/>
           <Route exact path='*' element={<ErrorComponent />}/>
         </Routes>
       </BrowserRouter>
