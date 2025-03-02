@@ -15,13 +15,17 @@ const styleCont = {
 }
 
 export default function CartWidjet(){
-    const [cart, setCart, addItem] = useContext(CartContext);
+    const [cart] = useContext(CartContext);
+
+    const total = cart.reduce((acumulador, producto) => {
+        return acumulador + producto.quantity;
+      }, 0);
 
     return(
         <>
         <div>{cart.length === 0 ? '' : <div style={styleDiv}>
             <img src={carrito} alt="Imagen del carrito" width="60" />
-            <span style={styleCont}>{cart.length}</span>
+            <span style={styleCont}>{total}</span>
         </div>}</div>
         </>
     );

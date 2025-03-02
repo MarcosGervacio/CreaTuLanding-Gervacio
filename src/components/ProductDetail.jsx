@@ -1,37 +1,62 @@
-import { useContext, useEffect, useState } from "react"
-import { getProduct } from './firebase.js';
+import { useContext, useEffect, useState } from "react";
+import { getProduct, updateProduct } from "./firebase.js";
 import { useParams } from "react-router-dom";
 import CountButton from "./CountButton";
 import { CartContext } from "../context/CartContext";
+import ReactLoading from "react-loading";
 
-export default function ProductDetail(){
-    const [product, setProduct] = useState(null);
-    const {id} = useParams();
-    const [cart, setCart, addItem] = useContext(CartContext);
+const loadingContainer = {
+  display: "flex",
+  justifyContent: "center",
+  width: "100vw",
+};
 
-    // const handleClick = () => {
-    //     addItem(product);
-    // }
+export default function ProductDetail() {
+  const [product, setProduct] = useState(null);
+  const { id } = useParams();
+  const [cart, setCart, addItem] = useContext(CartContext);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() =>{
-        getProduct(id).then((product) => setProduct(product));
-    },[]);
+  useEffect(() => {
+    getProduct(id).then((product) => {
+      setProduct(product);
+      setLoading(false);
+    });
+  }, []);
 
-    const addToCart = (quantity) => {
-        alert(`Agregaste ${quantity} unidades de ${product.title} al carrito`);
-        addItem(product, quantity);
-    };
+  const addToCart = (quantity) => {
+    addItem(product, quantity);
+    updateProduct(product.title, {stock: product.stock - quantity})
+    setProduct({...product, stock: product.stock - quantity});
+  };
 
-    return(
+
+  return (
+    <>
+      {loading ? (
         <>
-            <h1>Vista de detalle del producto</h1>
-            <h3>Nombre: {product?.title}</h3>
-            <img style={{width: 300}} src={product?.image} alt="" />
-            <p>Descripcion: {product?.description}</p>
-            <p>Categoria: {product?.category}</p>
-            <p>Precio: ${product?.price}</p>
-            {/* <button onClick={handleClick}>Agregar al carrito</button> */}
-            <CountButton onConfirm={addToCart} />
+          <h1>Vista de detalle del producto</h1>
+          <div style={loadingContainer}>
+            <ReactLoading type="spin" color="#fff" />
+          </div>
         </>
-    )
+      ) : (
+        <>
+          <h3>Nombre: {product?.title}</h3>
+          <img style={{ width: 300 }} src={product?.image} alt="" />
+          <p>Descripcion: {product?.description}</p>
+          <p>Categoria: {product?.category}</p>
+          <p>Precio: ${product?.price}</p>
+          {product?.stock === 0 ? (
+            <p>Producto sin stock.</p>
+          ) : (
+            <>
+              <p>Stock: {product?.stock}</p>
+              <CountButton onConfirm={addToCart} product={product} />
+            </>
+          )}
+        </>
+      )}
+    </>
+  );
 }

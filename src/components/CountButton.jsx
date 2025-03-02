@@ -1,8 +1,8 @@
 import { useState } from "react"
 
-export default function CountButton({onConfirm}){
+export default function CountButton({onConfirm ,product}){
     const [value, setValue] = useState(1);
-    const max = 10;
+    const max = product.stock;
     const min = 1;
     const handleChange = (e) => {
         const inputValue = parseInt(e.target.value);
@@ -22,7 +22,7 @@ export default function CountButton({onConfirm}){
             <span>cantidad: </span>
             <input
                 type="number"
-                max={10}
+                max={product.stock}
                 min={1}
                 value={value}
                 onChange={handleChange}

@@ -7,7 +7,7 @@ export default function ProductCard({product}){
         <>
             <article className='articleProduct'>
                 <h3>
-                    {product.title} - {product.id}    
+                    {product.title}   
                 </h3>    
                 <img className='imgProduct' src={product.image} alt={product.title} />
                 <p>${product.price}</p>
