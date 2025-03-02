@@ -1,8 +1,27 @@
-# React + Vite
+# Ecommerce GamerShop   
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Simulador de Ecommerce implementando Firebase en REACT
 
-Currently, two official plugins are available:
+## Caracteristicas
+- Firebase para los productos
+- Filtro para las distintas categorias de productos
+- useContext para el carrito
+- Control de stock (descuento al agregar al carrito y se revierte si eliminas el producto del carrito o lo vacias )
+- input para agregar producto al carrito con validacion para que no puedan agregar mas del stock disponible
+- SweetAlert para las notificaciones de producto agregado al carrito y al finalizar la compra
+- Checkout en donde se visualiza los productos, cantidades, total a pagar, formulario a llenar. Al finalizar te otorga el ID de la orden guardada en la base de datos.
+- Renderizado condicional para: CartWidjet, todo el contenido del carrito (botones, stock, validacion si esta vacio el carrito, loadings)
+- Al finalizar la compra te redirige al inicio
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Deploy en VERCEL: https://crea-tu-landing-gervacio.vercel.app/
+
+## Instalacion
+
+instrucciones para instalar y configurar el proyecto
+
+```bash
+    git clone https://github.com/MarcosGervacio/CreaTuLanding-Gervacio
+    cd CreaTuLanding-Gervacio
+    npm install
+    npm run dev
+```
