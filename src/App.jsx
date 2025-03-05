@@ -6,6 +6,7 @@ import ProductDetail from './components/ProductDetail'
 import ErrorComponent from './components/ErrorComponent'
 import CartComponent from './components/CartComponent'
 import CheckoutComponent from './components/CheckoutComponent'
+import LoginComponent from './components/LoginComponent'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path='/product/:id' element={<ProductDetail />}/>
           <Route exact path='/cart' element={<CartComponent />}/>
           <Route exact path='/checkout' element={<CheckoutComponent />}/>
+          <Route exact path='/login' element={<LoginComponent />}/>
           <Route exact path='*' element={<ErrorComponent />}/>
         </Routes>
       </BrowserRouter>

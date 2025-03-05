@@ -2,8 +2,9 @@ import { CartContext } from "../context/CartContext";
 import { useContext, useState, useEffect } from "react";
 import { sendOrder } from "./firebase.js";
 import { useNavigate, Link } from "react-router-dom";
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { UserContext } from "../context/UserContext";
 
 export default function CheckoutComponent() {
   const [cart, setCart] = useContext(CartContext);
@@ -11,8 +12,9 @@ export default function CheckoutComponent() {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [telefono, setTelefono] = useState("");
-  const MySwal = withReactContent(Swal)
+  const MySwal = withReactContent(Swal);
   const navigate = useNavigate();
+  const [user, setUser] = useContext(UserContext);
 
   const total = cart.reduce((acumulador, producto) => {
     return acumulador + producto.suma;
@@ -48,11 +50,12 @@ export default function CheckoutComponent() {
           setEmail("");
           setTelefono("");
           MySwal.fire({
-            title: "Compra finalizada correctamente!, Se genero su orden: " + id,
+            title:
+              "Compra finalizada correctamente!, Se genero su orden: " + id,
             text: "Guarde la el ID de su orden para cualquier consulta o reclamo",
             icon: "success",
           }).then(() => {
-            navigate('/');
+            navigate("/");
           });
         })
         .catch((error) => {
@@ -101,7 +104,13 @@ export default function CheckoutComponent() {
       />
       <br />
       <br />
-      <button onClick={handleClick}>Confirmar compra</button>
+      {user ? (
+        <button onClick={handleClick}>Confirmar compra</button>
+      ) : (
+        <Link to="/login">
+          <button>Iniciar sesion</button>
+        </Link>
+      )}
       <br />
       <br />
       <Link to="/cart">
