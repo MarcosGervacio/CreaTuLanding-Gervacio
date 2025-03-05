@@ -12,7 +12,7 @@ Simulador de Ecommerce implementando Firebase en REACT
 - Checkout en donde se visualiza los productos, cantidades, total a pagar, formulario a llenar. Al finalizar te otorga el ID de la orden guardada en la base de datos.
 - Renderizado condicional para: CartWidjet, todo el contenido del carrito (botones, stock, validacion si esta vacio el carrito, loadings)
 - Al finalizar la compra te redirige al inicio
-- Sistema de login con firebase Auth (logeo, cerrar sesion, para finalizar compra debes estar logeado)
+- Sistema de login con firebase Auth (logeo, recupero de contraseña, cerrar sesion, para finalizar compra debes estar logeado)
 
 ## Deploy en VERCEL: https://crea-tu-landing-gervacio.vercel.app/
 
