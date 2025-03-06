@@ -33,9 +33,9 @@ export default function ProductDetail() {
 
   return (
     <>
+      <h1>Vista de detalle del producto</h1>
       {loading ? (
         <>
-          <h1>Vista de detalle del producto</h1>
           <div style={loadingContainer}>
             <ReactLoading type="spin" color="#fff" />
           </div>
