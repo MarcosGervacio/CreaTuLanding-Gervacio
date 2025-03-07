@@ -1,14 +1,31 @@
 
 import usuario from '../assets/login.png';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { app } from './firebase';
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from '../context/UserContext';
+
 
 const auth = getAuth(app);
 
 export default function LoginWidjet(){
     const [user, setUser] = useContext(UserContext);
+
+          useEffect(() => {
+              setPersistence(auth, browserLocalPersistence)
+                  .catch((error) => {
+                      console.error("Error en la persistencia de usuario:", error);
+                  });
+      
+              onAuthStateChanged(auth, (user) => {
+                  if (user) {
+                      setUser(user.email);
+                  } else {
+                      setUser(null); 
+                  }
+              });
+          }, [auth, setUser]); 
+    
 
     return(
         <>
