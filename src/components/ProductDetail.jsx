@@ -24,18 +24,6 @@ export default function ProductDetail() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   localStorage.setItem("carrito", JSON.stringify(cart));
-  // }, [cart]);
-
-  // useEffect(() => {
-  //   const carritoAlmacenado = localStorage.getItem("carrito");
-  //   if (carritoAlmacenado) {
-  //     const parsedCart = JSON.parse(carritoAlmacenado);
-  //     setCart(parsedCart);
-  //   }
-  // }, []);
-
   const addToCart = (quantity) => {
     addItem(product, quantity);
     updateProduct(product.title, { stock: product.stock - quantity });
